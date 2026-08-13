@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 목록 (3/3) · t3b04-dc-night-rv-2</title>
+  <meta name="description" content="t3b04-dc-night-rv-2에 올라온 글 목록입니다.">
+  <link rel="canonical" href="https://deungchon-song-info.link-hub.org/posts-3.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+ :root {
+ --bg-color: #05050a;
+ --neon-pink: #ff007f;
+ --neon-violet: #8b5cf6;
+ --grid-color: rgba(139, 92, 246, 0.15);
+ --text-color: #cbd5e1;
+ --title-color: #ffffff;
+ --card-bg: #0d0b18;
+ --border-color: #2e1a47;
+ }
+ body {
+ background-color: var(--bg-color);
+ background-image: 
+ linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+ linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+ background-size: 40px 40px;
+ color: var(--text-color);
+ font-family: 'Outfit', 'Inter', 'Segoe UI', sans-serif;
+ margin: 0;
+ padding: 0;
+ line-height: 1.8;
+ }
+ header {
+ border-bottom: 3px solid var(--neon-pink);
+ padding: 50px 20px;
+ text-align: center;
+ background: linear-gradient(180deg, #000000 0%, #0d0b18 100%);
+ box-shadow: 0 5px 25px rgba(255, 0, 127, 0.25);
+ position: relative;
+ }
+ header::after {
+ content: '';
+ position: absolute;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ height: 2px;
+ background: linear-gradient(90deg, transparent, var(--neon-violet), var(--neon-pink), transparent);
+ }
+ header h1 {
+ color: var(--title-color);
+ font-size: 2.8rem;
+ margin: 0;
+ text-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--neon-violet);
+ letter-spacing: 2px;
+ font-weight: 900;
+ text-transform: uppercase;
+ }
+ header p {
+ font-size: 1.1rem;
+ color: #a78bfa;
+ margin: 15px 0 0 0;
+ letter-spacing: 4px;
+ font-weight: 600;
+ }
+ .container {
+ max-width: 950px;
+ margin: 40px auto;
+ padding: 0 20px;
+ }
+ .intro-box {
+ background-color: rgba(13, 11, 24, 0.9);
+ border: 2px solid var(--border-color);
+ border-radius: 8px;
+ padding: 30px;
+ margin-bottom: 40px;
+ box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+ backdrop-filter: blur(10px);
+ }
+ .intro-box h2 {
+ color: var(--title-color);
+ margin-top: 0;
+ font-size: 1.7rem;
+ text-shadow: 0 0 8px var(--neon-pink);
+ border-bottom: 1px solid var(--border-color);
+ padding-bottom: 15px;
+ font-weight: 800;
+ }
+ .intro-box p {
+ color: var(--text-color);
+ }
+ .spec-table {
+ width: 100%;
+ border-collapse: collapse;
+ margin: 30px 0;
+ background-color: #030206;
+ }
+ .spec-table th, .spec-table td {
+ border: 1px solid var(--border-color);
+ padding: 14px;
+ text-align: left;
+ }
+ .spec-table th {
+ background-color: rgba(139, 92, 246, 0.2);
+ color: #f472b6;
+ font-weight: 800;
+ }
+ .spec-table td {
+ color: #fff;
+ }
+ .post-list {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 25px;
+ margin-bottom: 40px;
+ }
+ @media(max-width: 768px) {
+ .post-list {
+ grid-template-columns: 1fr;
+ }
+ }
+ .post-card {
+ background-color: rgba(13, 11, 24, 0.95);
+ border: 1px solid var(--border-color);
+ border-radius: 8px;
+ padding: 25px;
+ transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ position: relative;
+ overflow: hidden;
+ }
+ .post-card::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 3px;
+ height: 100%;
+ background: var(--neon-pink);
+ transform: scaleY(0);
+ transition: transform 0.3s ease;
+ }
+ .post-card:hover::before {
+ transform: scaleY(1);
+ }
+ .post-card:hover {
+ border-color: var(--neon-pink);
+ transform: translateY(-5px);
+ box-shadow: 0 10px 25px rgba(255, 0, 127, 0.15);
+ }
+ .post-card h3 {
+ margin-top: 0;
+ color: #fff;
+ font-size: 1.25rem;
+ }
+ .post-card h3 a {
+ color: #fff;
+ text-decoration: none;
+ transition: color 0.3s;
+ }
+ .post-card h3 a:hover {
+ color: var(--neon-pink);
+ text-shadow: 0 0 5px var(--neon-pink);
+ }
+ .post-card p {
+ font-size: 0.95rem;
+ color: #94a3b8;
+ }
+ .story-section {
+ background-color: rgba(13, 11, 24, 0.95);
+ border-left: 6px solid var(--neon-pink);
+ padding: 30px;
+ margin-bottom: 40px;
+ border-radius: 0 8px 8px 0;
+ border: 1px solid var(--border-color);
+ border-left: 6px solid var(--neon-pink);
+ box-shadow: 0 0 25px rgba(255, 0, 127, 0.1);
+ }
+ .story-section h2 {
+ color: #fff;
+ margin-top: 0;
+ font-size: 1.6rem;
+ text-shadow: 0 0 10px var(--neon-violet);
+ font-weight: 800;
+ }
+ .story-section p {
+ color: var(--text-color);
+ }
+ .review-section {
+ margin-bottom: 40px;
+ }
+ .review-section h2 {
+ color: var(--neon-pink);
+ text-shadow: 0 0 8px var(--neon-pink);
+ border-bottom: 1px solid var(--border-color);
+ padding-bottom: 15px;
+ font-weight: 800;
+ }
+ .review-card {
+ background-color: rgba(13, 11, 24, 0.9);
+ border-radius: 6px;
+ padding: 25px;
+ margin-bottom: 20px;
+ border: 1px solid var(--border-color);
+ border-left: 4px solid var(--neon-violet);
+ transition: all 0.3s;
+ }
+ .review-card:hover {
+ border-color: var(--neon-pink);
+ box-shadow: 0 5px 15px rgba(139, 92, 246, 0.1);
+ }
+ .review-card .meta {
+ font-size: 0.9rem;
+ color: #f472b6;
+ margin-bottom: 12px;
+ font-weight: 800;
+ letter-spacing: 1px;
+ }
+ .review-card p {
+ margin: 0;
+ color: #f1f5f9;
+ font-style: italic;
+ }
+ .cta-section {
+ background: linear-gradient(135deg, #0d0b18 0%, #ff007f 150%);
+ border-radius: 8px;
+ padding: 45px;
+ text-align: center;
+ box-shadow: 0 0 35px rgba(255, 0, 127, 0.25);
+ border: 2px solid var(--neon-pink);
+ position: relative;
+ overflow: hidden;
+ }
+ .cta-section h2 {
+ margin-top: 0;
+ color: #fff;
+ font-size: 2.2rem;
+ text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+ font-weight: 900;
+ }
+ .cta-section p {
+ color: #f1f5f9;
+ font-size: 1.15rem;
+ text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+ }
+ .btn-call {
+ display: inline-block;
+ background-color: var(--bg-color);
+ color: var(--neon-pink);
+ border: 2px solid var(--neon-pink);
+ padding: 18px 40px;
+ font-size: 1.4rem;
+ font-weight: 900;
+ text-decoration: none;
+ border-radius: 6px;
+ margin-top: 25px;
+ transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+ box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+ letter-spacing: 1px;
+ }
+ .btn-call:hover {
+ background-color: var(--neon-pink);
+ color: #fff;
+ box-shadow: 0 0 30px var(--neon-pink);
+ transform: scale(1.05);
+ }
+ footer {
+ text-align: center;
+ padding: 50px 20px;
+ border-top: 1px solid var(--border-color);
+ color: #64748b;
+ font-size: 0.9rem;
+ background-color: #020205;
+ }
+ </style>
+  <meta property="og:title" content="글 목록 (3/3) · t3b04-dc-night-rv-2">
+  <meta property="og:description" content="t3b04-dc-night-rv-2에 올라온 글 목록입니다.">
+  <meta property="og:url" content="https://deungchon-song-info.link-hub.org/posts-3.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <div class="container">
+    <header>
+ <h1>RETRO_DC_NIGHT_GRID</h1>
+ <p>Neon Synthwave & Total Privacy Protection Console</p>
+</header>
+    <main>
+      <h1>글 목록</h1>
+      <p>전체 43개 · 3/3 페이지</p>
+      <ul class="post-list">
+      <li class="post-item">
+        <a class="post-item__link" href="posts/normal-3.html">등촌 유흥 후기 정보</a>
+        <p class="post-item__summary">등촌 일대는 다양한 놀거리와 먹거리가 밀집된 지역으로, 많은 방문객들이 낮과 밤을 가리지 않고 찾는 곳입니다. 특히 야간에는 다양한 문화시설과 편의시설이 운영되며, 지역 특성에 맞는 다양한 서비스 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/review-001.html">등촌 바닥, 당신이 낸 돈이 어디로 새는지 분석해봤다.</a>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/review-002.html">2023년 홍대, 엑셀 돌려본 단골이 말하는 폐업 썰 vs 살아남은 곳 특징</a>
+        <p class="post-item__summary">아, 2023년 홍대 말이지. 내가 다니던 몇몇 가게들이 훅 갔는데, 그 이유를 좀 파고들어 봤다. 그냥 앉아서 술만 마시는 게 아니라, 엑셀에 내가 시킨 메뉴들 원가 계산해서 싹 다 넣어봤지. 뭐</p>
+      </li>
+      </ul>
+    <nav class="pager">
+      <a class="pager__link" href="posts.html">1</a>
+      <a class="pager__link" href="posts-2.html">2</a>
+      <span class="pager__current">3</span>
+    </nav>
+    </main>
+  </div>
+</body>
+</html>

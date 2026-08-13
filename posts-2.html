@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 목록 (2/3) · t3b04-dc-night-rv-2</title>
+  <meta name="description" content="t3b04-dc-night-rv-2에 올라온 글 목록입니다.">
+  <link rel="canonical" href="https://deungchon-song-info.link-hub.org/posts-2.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+ :root {
+ --bg-color: #05050a;
+ --neon-pink: #ff007f;
+ --neon-violet: #8b5cf6;
+ --grid-color: rgba(139, 92, 246, 0.15);
+ --text-color: #cbd5e1;
+ --title-color: #ffffff;
+ --card-bg: #0d0b18;
+ --border-color: #2e1a47;
+ }
+ body {
+ background-color: var(--bg-color);
+ background-image: 
+ linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+ linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+ background-size: 40px 40px;
+ color: var(--text-color);
+ font-family: 'Outfit', 'Inter', 'Segoe UI', sans-serif;
+ margin: 0;
+ padding: 0;
+ line-height: 1.8;
+ }
+ header {
+ border-bottom: 3px solid var(--neon-pink);
+ padding: 50px 20px;
+ text-align: center;
+ background: linear-gradient(180deg, #000000 0%, #0d0b18 100%);
+ box-shadow: 0 5px 25px rgba(255, 0, 127, 0.25);
+ position: relative;
+ }
+ header::after {
+ content: '';
+ position: absolute;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ height: 2px;
+ background: linear-gradient(90deg, transparent, var(--neon-violet), var(--neon-pink), transparent);
+ }
+ header h1 {
+ color: var(--title-color);
+ font-size: 2.8rem;
+ margin: 0;
+ text-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--neon-violet);
+ letter-spacing: 2px;
+ font-weight: 900;
+ text-transform: uppercase;
+ }
+ header p {
+ font-size: 1.1rem;
+ color: #a78bfa;
+ margin: 15px 0 0 0;
+ letter-spacing: 4px;
+ font-weight: 600;
+ }
+ .container {
+ max-width: 950px;
+ margin: 40px auto;
+ padding: 0 20px;
+ }
+ .intro-box {
+ background-color: rgba(13, 11, 24, 0.9);
+ border: 2px solid var(--border-color);
+ border-radius: 8px;
+ padding: 30px;
+ margin-bottom: 40px;
+ box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+ backdrop-filter: blur(10px);
+ }
+ .intro-box h2 {
+ color: var(--title-color);
+ margin-top: 0;
+ font-size: 1.7rem;
+ text-shadow: 0 0 8px var(--neon-pink);
+ border-bottom: 1px solid var(--border-color);
+ padding-bottom: 15px;
+ font-weight: 800;
+ }
+ .intro-box p {
+ color: var(--text-color);
+ }
+ .spec-table {
+ width: 100%;
+ border-collapse: collapse;
+ margin: 30px 0;
+ background-color: #030206;
+ }
+ .spec-table th, .spec-table td {
+ border: 1px solid var(--border-color);
+ padding: 14px;
+ text-align: left;
+ }
+ .spec-table th {
+ background-color: rgba(139, 92, 246, 0.2);
+ color: #f472b6;
+ font-weight: 800;
+ }
+ .spec-table td {
+ color: #fff;
+ }
+ .post-list {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 25px;
+ margin-bottom: 40px;
+ }
+ @media(max-width: 768px) {
+ .post-list {
+ grid-template-columns: 1fr;
+ }
+ }
+ .post-card {
+ background-color: rgba(13, 11, 24, 0.95);
+ border: 1px solid var(--border-color);
+ border-radius: 8px;
+ padding: 25px;
+ transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ position: relative;
+ overflow: hidden;
+ }
+ .post-card::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 3px;
+ height: 100%;
+ background: var(--neon-pink);
+ transform: scaleY(0);
+ transition: transform 0.3s ease;
+ }
+ .post-card:hover::before {
+ transform: scaleY(1);
+ }
+ .post-card:hover {
+ border-color: var(--neon-pink);
+ transform: translateY(-5px);
+ box-shadow: 0 10px 25px rgba(255, 0, 127, 0.15);
+ }
+ .post-card h3 {
+ margin-top: 0;
+ color: #fff;
+ font-size: 1.25rem;
+ }
+ .post-card h3 a {
+ color: #fff;
+ text-decoration: none;
+ transition: color 0.3s;
+ }
+ .post-card h3 a:hover {
+ color: var(--neon-pink);
+ text-shadow: 0 0 5px var(--neon-pink);
+ }
+ .post-card p {
+ font-size: 0.95rem;
+ color: #94a3b8;
+ }
+ .story-section {
+ background-color: rgba(13, 11, 24, 0.95);
+ border-left: 6px solid var(--neon-pink);
+ padding: 30px;
+ margin-bottom: 40px;
+ border-radius: 0 8px 8px 0;
+ border: 1px solid var(--border-color);
+ border-left: 6px solid var(--neon-pink);
+ box-shadow: 0 0 25px rgba(255, 0, 127, 0.1);
+ }
+ .story-section h2 {
+ color: #fff;
+ margin-top: 0;
+ font-size: 1.6rem;
+ text-shadow: 0 0 10px var(--neon-violet);
+ font-weight: 800;
+ }
+ .story-section p {
+ color: var(--text-color);
+ }
+ .review-section {
+ margin-bottom: 40px;
+ }
+ .review-section h2 {
+ color: var(--neon-pink);
+ text-shadow: 0 0 8px var(--neon-pink);
+ border-bottom: 1px solid var(--border-color);
+ padding-bottom: 15px;
+ font-weight: 800;
+ }
+ .review-card {
+ background-color: rgba(13, 11, 24, 0.9);
+ border-radius: 6px;
+ padding: 25px;
+ margin-bottom: 20px;
+ border: 1px solid var(--border-color);
+ border-left: 4px solid var(--neon-violet);
+ transition: all 0.3s;
+ }
+ .review-card:hover {
+ border-color: var(--neon-pink);
+ box-shadow: 0 5px 15px rgba(139, 92, 246, 0.1);
+ }
+ .review-card .meta {
+ font-size: 0.9rem;
+ color: #f472b6;
+ margin-bottom: 12px;
+ font-weight: 800;
+ letter-spacing: 1px;
+ }
+ .review-card p {
+ margin: 0;
+ color: #f1f5f9;
+ font-style: italic;
+ }
+ .cta-section {
+ background: linear-gradient(135deg, #0d0b18 0%, #ff007f 150%);
+ border-radius: 8px;
+ padding: 45px;
+ text-align: center;
+ box-shadow: 0 0 35px rgba(255, 0, 127, 0.25);
+ border: 2px solid var(--neon-pink);
+ position: relative;
+ overflow: hidden;
+ }
+ .cta-section h2 {
+ margin-top: 0;
+ color: #fff;
+ font-size: 2.2rem;
+ text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+ font-weight: 900;
+ }
+ .cta-section p {
+ color: #f1f5f9;
+ font-size: 1.15rem;
+ text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+ }
+ .btn-call {
+ display: inline-block;
+ background-color: var(--bg-color);
+ color: var(--neon-pink);
+ border: 2px solid var(--neon-pink);
+ padding: 18px 40px;
+ font-size: 1.4rem;
+ font-weight: 900;
+ text-decoration: none;
+ border-radius: 6px;
+ margin-top: 25px;
+ transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+ box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+ letter-spacing: 1px;
+ }
+ .btn-call:hover {
+ background-color: var(--neon-pink);
+ color: #fff;
+ box-shadow: 0 0 30px var(--neon-pink);
+ transform: scale(1.05);
+ }
+ footer {
+ text-align: center;
+ padding: 50px 20px;
+ border-top: 1px solid var(--border-color);
+ color: #64748b;
+ font-size: 0.9rem;
+ background-color: #020205;
+ }
+ </style>
+  <meta property="og:title" content="글 목록 (2/3) · t3b04-dc-night-rv-2">
+  <meta property="og:description" content="t3b04-dc-night-rv-2에 올라온 글 목록입니다.">
+  <meta property="og:url" content="https://deungchon-song-info.link-hub.org/posts-2.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <div class="container">
+    <header>
+ <h1>RETRO_DC_NIGHT_GRID</h1>
+ <p>Neon Synthwave & Total Privacy Protection Console</p>
+</header>
+    <main>
+      <h1>글 목록</h1>
+      <p>전체 43개 · 2/3 페이지</p>
+      <ul class="post-list">
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260721-0226.html">등촌 유흥 후기 오해와 마포 홍대 단체 가라오케 예약 가이드 정리</a>
+        <p class="post-item__summary">온라인상에 떠도는 등촌 유흥 후기 내용이 전부 사실일 것이라고 믿는 것은 큰 오산입니다. 많은 사람들이 현장 경험이 없는 채로 작성된 글을 보고 잘못된 기대를 품곤 합니다. 가라오케를 방문하기 전에</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260721-0227.html">등촌 유흥 후기 보며 고민하는 마포 단체 회식용 대형 룸 노래방 정보</a>
+        <p class="post-item__summary">단체 회식을 준비할 때 가장 중요한 것은 장소의 수용 가능 인원과 시설의 적절성입니다. 등촌 유흥 후기 등을 통해 여러 후보지를 비교하는 분들이 많지만, 실제 대형 룸을 예약할 때는 더욱 엄격한 기</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260721-0228.html">등촌 유흥 후기 참고해 찾는 합정 셔츠룸 단골들이 뽑은 핫플 매거진</a>
+        <p class="post-item__summary">여러분은 평소 여가 시간을 보내기 위해 어떤 기준을 가지고 장소를 선택하시나요? 막연히 등촌 유흥 후기 같은 대중적인 정보에만 의존하는 것은 아닌지 한 번쯤 되돌아볼 필요가 있습니다. 특정 지역의 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0320.html">등촌 유흥 후기 체크리스트로 확인하는 합정 노래방 추천정보</a>
+        <p class="post-item__summary">등촌 유흥 후기를 통해 다양한 지역 정보를 습득하는 분들이 늘어나면서 합정 지역의 시설에 대한 관심도 높아지고 있습니다. 만족스러운 방문을 위해 반드시 체크해야 할 항목은 접근성과 위치의 편리성입니</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0321.html">등촌 유흥 후기 말고 연남 클럽 추천정보 찾아 떠나는 밤의 매력</a>
+        <p class="post-item__summary">주말 밤 홍대 인근을 배회하다 보면 의도치 않게 등촌 유흥 후기 같은 정보에 현혹되는 경우가 있습니다. 하지만 정작 방문객들이 원하는 것은 세련된 분위기의 공간에서 음악을 즐기는 클럽 문화입니다. </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0322.html">등촌 유흥 후기 대신 살펴보는 합정 셔츠룸 추천정보와 시간 활용법</a>
+        <p class="post-item__summary">흔히들 밤 문화에 대해 잘못 알고 있는 사실 중 하나는 무작정 늦은 밤에 나서야 즐거움이 극대화된다는 것입니다. 등촌 유흥 후기 등 파편화된 정보만 믿고 무작정 합정으로 향하는 것은 효율적인 동선 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0323.html">등촌 유흥 후기 찾기 전 읽는 공덕 가라오케 추천정보와 인원 구성</a>
+        <p class="post-item__summary">만족스러운 밤을 보내기 위해서는 충분한 사전 조사, 적절한 인원 구성, 그리고 검증된 장소 선정이라는 세 가지 조건이 필요합니다. 인터넷에 떠도는 등촌 유흥 후기 같은 단편적인 정보에 의존하기보다는</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0324.html">등촌 유흥 후기 말고 살펴보는 상수 마사지 추천정보와 선택 기준</a>
+        <p class="post-item__summary">일상의 피로를 해소하기 위해 마사지 샵을 찾을 때 여러분은 어떤 기준을 가장 먼저 고려하시나요. 인터넷에 떠도는 등촌 유흥 후기 같은 정보에 의존하기보다는 자신의 몸 상태와 목적에 부합하는 환경을 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0325.html">등촌 유흥 후기 기반 망원 노래방 추천정보 확인하는 절차 안내</a>
+        <p class="post-item__summary">많은 분이 망원 노래방을 이용할 때 어디가 좋은지 고민하며 등촌 유흥 후기 등을 검색하곤 합니다. 그러나 익명성이 보장된 커뮤니티의 글은 주관적인 경험이 강하게 반영되므로 신뢰도를 검증하는 체계적인</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0326.html">등촌 유흥 후기 비교와 홍대 노래방 추천정보 가격 판단 기준</a>
+        <p class="post-item__summary">홍대 인근의 노래방을 고민할 때 사람들은 종종 등촌 유흥 후기 같은 정보와 가격대를 견주어 보곤 합니다. 가격이 높은 곳이 반드시 최상의 서비스를 보장하지는 않으며 반대로 저렴하다고 해서 무조건 가</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0327.html">등촌 유흥 후기 말고 알아보는 공덕 셔츠룸 추천정보 선택 가이드</a>
+        <p class="post-item__summary">많은 분이 등촌 유흥 후기를 검색하며 정보를 찾지만, 정작 실속 있는 선택을 위해서는 지역적 특성을 고려해야 합니다. 특히 공덕 일대에서 업장을 찾을 때 단순히 온라인상의 글만 믿고 방문하면 기대와</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0328.html">등촌 유흥 후기: 연남 유흥 추천정보를 위한 위치와 접근성 체크리스트</a>
+        <p class="post-item__summary">등촌 지역의 유흥 문화를 경험하며 얻은 후기를 바탕으로, 이번에는 연남 지역의 유흥 정보를 살펴보겠습니다. 연남동은 젊음과 예술이 공존하는 매력적인 동네로, 다양한 즐길 거리를 제공합니다. 특히 연</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0329.html">등촌 유흥 후기 맹신 금지 마곡 가라오케 추천정보 활용법</a>
+        <p class="post-item__summary">어느 평범한 금요일 밤, 등촌 유흥 후기 글만 보고 찾아갔던 동료가 생각지도 못한 상황에 당황했다는 이야기를 들었습니다. 마곡 지역은 신흥 유흥지로 떠오르면서 다양한 가라오케가 운영 중이지만, 초행</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0330.html">등촌 유흥 후기 신뢰도 분석 및 마곡 유흥 추천정보 확인</a>
+        <p class="post-item__summary">흔히 인터넷에 떠도는 등촌 유흥 후기 내용을 보고 모든 지역의 환경이 획일적일 것이라 단정 짓는 경우가 많습니다. 하지만 특정 업소의 단편적인 경험담이 전체 상권을 대변할 수는 없으며, 정보의 출처</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/guide-003.html">NSA 기술 분석관 스타일의 가라오케 에코 최적 조율법</a>
+        <p class="post-item__summary">여어- 보안 통신 프로토콜 브로들! 2차로 들어간 가라오케 룸 안에서 마이크를 잡았을 때, 앰프의 정체불명 다이얼들을 대충 조율하다가 고주파 하울링(Howling) 소음으로 귀청이 떨어져 나갈 뻔하</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/guide-004.html">에드워드 스노든 프리즘 도청 폭로와 인간 전두엽 릴렉스 모드 진입 분석</a>
+        <p class="post-item__summary">여어- 보안 매트릭스 브로들! 전자기기와 통신 트래픽을 상시 모니터링하여 인간의 모든 디지털 발자국을 영구 캐싱하는 NSA 감시 프로그램 프리즘(PRISM)과, 이를 전격 폭로하며 세계 정보 기관에</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/juice-1.html">등촌 유흥 후기 및 연남 마사지 관련 정보</a>
+        <p class="post-item__summary">등촌 지역은 다양한 여가 시설과 휴식 공간이 밀집되어 있어 많은 방문객에게 선호되는 장소로 인식되고 있습니다. 이 지역에서는 다양한 유형의 유흥 서비스와 건강 관리 시설이 공존하며, 방문자들은 각자</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/juice-2.html">등촌 유흥 후기</a>
+        <p class="post-item__summary">등촌 지역의 유흥 시설을 방문할 때 많은 사람들이 주의해야 할 점은 개인의 위생 관리와 주변 환경의 청결 상태입니다. 최근에는 다양한 서비스 제공 업체들이 생기면서 고객들의 눈높이도 점점 높아지고 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/normal-1.html">등촌 유흥 문화의 일반적인 특징과 정보 안내</a>
+        <p class="post-item__summary">등촌은 서울 내에서도 독특한 역사와 문화를 간직한 지역으로, 다양한 연령층이訪문하는 특성이 있습니다. 이 지역을 찾는 방문객들은 다양한 유형의 문화 시설을 이용할 수 있으며, 주로 저녁 시간대에 활</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/normal-2.html">등촌 유흥 관련 정보 안내</a>
+        <p class="post-item__summary">등촌 지역의 유흥시설을 방문할 때에는 기본적인 안전 수칙과 현지 규정을 미리 숙지하는 것이 중요합니다. 많은 이용객들이 목적지에 도착한 후에야 관련 법률을 인지하지 못해 불이익을 겪거나, 과도한 비</p>
+      </li>
+      </ul>
+    <nav class="pager">
+      <a class="pager__link" href="posts.html">1</a>
+      <span class="pager__current">2</span>
+      <a class="pager__link" href="posts-3.html">3</a>
+    </nav>
+    </main>
+  </div>
+</body>
+</html>
